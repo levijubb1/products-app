@@ -2,20 +2,8 @@ import { createRouter } from './context';
 import { z } from 'zod';
 
 export const productRouter = createRouter()
-	.query('get', {
-		input: z
-			.object({
-				id: z.number()
-			})
-			.nullish(),
-		async resolve({ input, ctx }) {
-			if (input?.id) {
-				return await ctx.prisma.product.findUnique({
-					where: {
-						id: input.id
-					}
-				});
-			}
+	.query('getAll', {
+		async resolve({ ctx }) {
 			return await ctx.prisma.product.findMany();
 		}
 	})
