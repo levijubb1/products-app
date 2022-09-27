@@ -1,8 +1,13 @@
-import Header from '@/components/Header';
 import Image from 'next/image';
 import Head from 'next/head';
 import NextError from 'next/error';
+
 import { trpc } from '../utils/trpc';
+
+// components
+import Header from '@/components/Header';
+import Loading from '@/components/Loading';
+import { FaPlus } from 'react-icons/fa';
 
 const Products = () => {
 	const postQuery = trpc.useQuery(['product.getAll']);
@@ -17,7 +22,11 @@ const Products = () => {
 	}
 
 	if (postQuery.status !== 'success') {
-		return <>Loading...</>;
+		return (
+			<div className="flex justify-center items-center h-[100vh]">
+				<Loading />
+			</div>
+		);
 	}
 
 	const { data: products } = postQuery;
@@ -29,8 +38,7 @@ const Products = () => {
 				<meta name="description" content="Products page" />
 			</Head>
 			<Header />
-			<div className="p-8"></div>
-			<div className="container mx-auto">
+			<div className="container mx-auto relative ">
 				<div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 					<h2 className="sr-only">Products</h2>
 
@@ -40,18 +48,25 @@ const Products = () => {
 								<a key={p.id} className="group">
 									<div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
 										<Image
-											src={`https://source.unsplash.com/random/300x200?sig=${Math.random()}`}
+											src={`https://source.unsplash.com/random/300x200`}
 											alt="An image"
 											layout="fill"
 											className="h-full w-full object-cover object-center"
 										/>
 									</div>
 									<h3 className="mt-4 text-sm ">{p.name}</h3>
-									<p className="mt-1 text-lg font-medium ">{p.price}</p>
+									<p className="mt-1 text-lg font-medium ">${p.price}</p>
 								</a>
 							))}
 					</div>
 				</div>
+				<button
+					// onClick={}
+					aira-label="Create new product"
+					className="btn-primary btn btn-circle fixed bottom-10 right-10"
+				>
+					<FaPlus />
+				</button>
 			</div>
 		</>
 	);

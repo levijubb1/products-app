@@ -13,7 +13,7 @@ export default function SignIn({ providers }: { providers: Provider[] }) {
 							<div key={provider.name} className='text-center'>
 								<button
 									className="btn btn-outline inline-flex gap-4"
-									onClick={() => signIn(provider.id)}
+									onClick={() => signIn(provider.id, { callbackUrl: '/products' })}
 								>
 									{/* eslint-disable-next-line @next/next/no-img-element */}
 									<img src="/google.svg" alt="Google Logo" />
