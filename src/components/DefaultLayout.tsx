@@ -8,9 +8,6 @@ type Props = {
 	pageDescription: string;
 };
 
-/**
- * Will this work?
- */
 const DefaultLayout: React.FC<Props> = ({
 	children,
 	pageName,
