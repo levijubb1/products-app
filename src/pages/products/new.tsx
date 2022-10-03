@@ -46,6 +46,7 @@ function NewProduct() {
 					/>
 					<button
 						className={`btn btn-primary col-span-2 ${setter.isLoading ? 'loading' : ''}`}
+						disabled={!newProduct.name || !newProduct.price}
 						type="submit"
 					>
 						Add Product!
