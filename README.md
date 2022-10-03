@@ -9,7 +9,9 @@ npx prisma migrate dev
 ```
 
 TODO:
-- [ ] Add image handling for products
-- [ ] Add product specific page (editing and viewing)
-- [ ] Add new product page
-- [x] Add login with google to gain access
+- [ ] Complete login page
+- [ ] Protect routes and api calls
+- [ ] Host on Vercel
+- [ ] Add product editing
+- [ ] Add product deletion
+
