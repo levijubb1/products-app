@@ -10,6 +10,7 @@ npx prisma migrate dev
 
 TODO:
 - [ ] Complete login page
+- [ ] Do redirects properly
 - [ ] Protect routes and api calls
 - [ ] Host on Vercel
 - [ ] Add product editing
