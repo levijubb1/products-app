@@ -1,5 +1,6 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import Input from '@/components/Input';
+import { trpc } from '@/utils/trpc';
 import { useState } from 'react';
 
 function NewProduct() {
@@ -8,6 +9,7 @@ function NewProduct() {
 		price: 0;
 	}
 
+	const setter = trpc.useMutation('product.create');
 	const [newProduct, setNewProduct] = useState<Product>({ name: '', price: 0 });
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +19,7 @@ function NewProduct() {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log({ newProduct });
+		newProduct.name && newProduct.price && setter.mutate({...newProduct, price: Number(newProduct.price)});
 	};
 
 	return (
@@ -42,7 +44,10 @@ function NewProduct() {
 						value={newProduct.price}
 						onChange={handleChange}
 					/>
-					<button className="btn btn-primary col-span-2" type="submit">
+					<button
+						className={`btn btn-primary col-span-2 ${setter.isLoading ? 'loading' : ''}`}
+						type="submit"
+					>
 						Add Product!
 					</button>
 				</section>
