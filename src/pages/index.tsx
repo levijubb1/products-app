@@ -3,10 +3,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Loading from '@/components/Loading';
 
 const Home: NextPage = () => {
 	const router = useRouter();
-	const { data: session } = useSession();
+	const { data: session, status } = useSession();
 
 	if (session) {
 		router.push('/products');
@@ -27,37 +28,20 @@ const Home: NextPage = () => {
 				style={{ backgroundImage: "url('/landing-bg.png')" }}
 				className="bg-no-repeat bg-cover mx-auto flex flex-col  items-center justify-center min-h-screen p-4"
 			>
-				<Link href="auth/sign-in">
-					<button className="btn absolute z-10 btn-circle h-[250px] w-[250px]">
-						Sign in
-						{/* <svg
-						className="absolute transform translate-x-[11px] "
-						viewBox="0 0 300 300"
-						style={{
-							height: '350px',
-							width: '350px'
-						}}
-					>
-						<path
-							id="curve"
-							fill="none"
-							stroke="none"
-							d="M 32.550491,148.48008 A -108.15144,-108.15144 0 0 1 140.70194,40.328644 -108.15144,-108.15144 0 0 1 248.85338,148.48008 -108.15144,-108.15144 0 0 1 140.70194,256.63153 -108.15144,-108.15144 0 0 1 32.550491,148.48008 Z"
-						/>
-						<text
-							fontSize="25"
-							fill="#ffffff"
-							letterSpacing="2"
-							fontFamily="sans-serif"
-							fontWeight="bold"
-						>
-							<textPath xlinkHref="#curve" startOffset="5">
-								A totally groovy product CRUD app == By LJ == 
-							</textPath>
-						</text>
-					</svg> */}
-					</button>
-				</Link>
+				{status === 'loading' && (
+					<div className="flex justify-center items-center h-[100vh]">
+						<Loading />
+					</div>
+				)}
+
+				{/* If no session is detected show login option */}
+				{session === null && (
+					<Link href="auth/sign-in">
+						<button className="btn absolute z-10 btn-circle h-[250px] w-[250px]">
+							Sign in
+						</button>
+					</Link>
+				)}
 			</main>
 		</>
 	);
