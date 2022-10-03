@@ -1,19 +1,19 @@
 type Props = {
-	placeholder: string;
+	placeholder?: string;
 	label: string;
-
+	styles?: string;
 	// All other props
 	[x: string]: unknown;
 };
 
-const Input: React.FC<Props> = ({ placeholder, label, ...rest }) => {
+const Input: React.FC<Props> = ({ placeholder, label, styles, ...rest }) => {
 	return (
-		<div className="form-control full-width">
+		<div className={'form-control full-width' + (styles ? ` ${styles}` : '')}>
 			<label className="label">
 				<span className="label-text">{label}</span>
 			</label>
 			<input
-				className="input input-bordered input-secondary col-span-12"
+				className="input input-bordered input-secondary"
 				placeholder={placeholder}
 				{...rest}
 			/>

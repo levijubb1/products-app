@@ -20,7 +20,7 @@ const DefaultLayout: React.FC<Props> = ({
 				<meta name="description" content={pageDescription} />
 			</Head>
 			<Header />
-			<div className="container mx-auto relative ">{children}</div>
+			<div className="container mx-auto relative p-4">{children}</div>
 		</>
 	);
 };
