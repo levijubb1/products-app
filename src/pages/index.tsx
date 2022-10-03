@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
@@ -26,9 +27,10 @@ const Home: NextPage = () => {
 				style={{ backgroundImage: "url('/landing-bg.png')" }}
 				className="bg-no-repeat bg-cover mx-auto flex flex-col  items-center justify-center min-h-screen p-4"
 			>
-				<button onClick={() => router.push('/auth/sign-in')} className="btn absolute z-10 btn-circle h-[250px] w-[250px]">
-					Sign in
-					{/* <svg
+				<Link href="auth/sign-in">
+					<button className="btn absolute z-10 btn-circle h-[250px] w-[250px]">
+						Sign in
+						{/* <svg
 						className="absolute transform translate-x-[11px] "
 						viewBox="0 0 300 300"
 						style={{
@@ -54,7 +56,8 @@ const Home: NextPage = () => {
 							</textPath>
 						</text>
 					</svg> */}
-				</button>
+					</button>
+				</Link>
 			</main>
 		</>
 	);
