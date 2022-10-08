@@ -99,11 +99,14 @@ const Header: React.FC = () => {
 						</li>
 						<li>
 							<a>
-								<button onClick={() => signOut({callbackUrl: '/'})}>
+							<button
+							className='contents'
+								onClick={() => signOut({ callbackUrl: '/' })}
+							>
 									Log out
 									<FaRunning />
-								</button>
-							</a>
+							</button>
+								</a>
 						</li>
 					</ul>
 				</div>
