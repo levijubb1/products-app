@@ -55,14 +55,4 @@ const Products = () => {
 	);
 };
 
-// export const getStaticProps = async () => {
-// 	const products = await getProducts();
-// 	const DAY_IN_SECONDS = 60 * 60 * 24;
-// 	// Doing this weird JSON hack to serialize date fields
-// 	return {
-// 		props: { products: JSON.parse(JSON.stringify(products)) },
-// 		revalidate: DAY_IN_SECONDS
-// 	};
-// };
-
 export default Products;

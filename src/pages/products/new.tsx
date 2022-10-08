@@ -1,6 +1,7 @@
 import DefaultLayout from '@/components/DefaultLayout';
 import Input from '@/components/Input';
 import { trpc } from '@/utils/trpc';
+import Router from 'next/router';
 import { useState } from 'react';
 
 function NewProduct() {
@@ -19,7 +20,10 @@ function NewProduct() {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		newProduct.name && newProduct.price && setter.mutate({...newProduct, price: Number(newProduct.price)});
+		newProduct.name &&
+			newProduct.price &&
+			setter.mutate({ ...newProduct, price: Number(newProduct.price) });
+		Router.back();
 	};
 
 	return (
@@ -38,18 +42,20 @@ function NewProduct() {
 					<Input
 						name="price"
 						label="Product price"
-						placeholder="69.00"
+						placeholder="69"
 						type="number"
 						styles="col-span-2 sm:col-span-1"
 						value={newProduct.price}
 						onChange={handleChange}
 					/>
 					<button
-						className={`btn btn-primary col-span-2 ${setter.isLoading ? 'loading' : ''}`}
+						className={`btn btn-primary col-span-2 ${
+							setter.isLoading ? 'loading' : ''
+						}`}
 						disabled={!newProduct.name || !newProduct.price}
 						type="submit"
 					>
-						Add Product!
+						Save
 					</button>
 				</section>
 			</form>
