@@ -1,6 +1,12 @@
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
 import ThemeSwap from './ThemeSwap';
+import { FaRunning, FaCog } from 'react-icons/fa';
+import { signOut } from 'next-auth/react';
 
 const Header: React.FC = () => {
+	const { data: session } = useSession();
+
 	return (
 		<div className="navbar bg-primary">
 			<div className="navbar-start">
@@ -77,6 +83,30 @@ const Header: React.FC = () => {
 						<span className="badge badge-xs badge-secondary indicator-item"></span>
 					</div>
 				</button>
+				<div className="dropdown dropdown-end">
+					<button className="btn btn-ghost btn-circle avatar">
+						<div className="w-10 mask mask-hexagon">
+							{session?.user?.image && (
+								<Image src={session?.user?.image} alt="Avatar" layout="fill" />
+							)}
+						</div>
+					</button>
+					<ul className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box">
+						<li>
+							<a>
+								Settings <FaCog />
+							</a>
+						</li>
+						<li>
+							<a>
+								<button onClick={() => signOut({callbackUrl: '/'})}>
+									Log out
+									<FaRunning />
+								</button>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	);

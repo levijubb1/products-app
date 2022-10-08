@@ -21,6 +21,6 @@ export default defineNextConfig({
 		defaultLocale: 'en'
 	},
 	images: {
-		domains: ['tailwindui.com', 'source.unsplash.com']
+		domains: ['tailwindui.com', 'source.unsplash.com', 'lh3.googleusercontent.com']
 	}
 });
