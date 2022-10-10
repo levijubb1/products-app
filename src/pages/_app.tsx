@@ -4,16 +4,21 @@ import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
 import { SessionProvider } from 'next-auth/react';
 import superjson from 'superjson';
-import type { AppType } from 'next/app';
+import type { AppProps, AppType } from 'next/app';
 import type { AppRouter } from '../server/router';
 import type { Session } from 'next-auth';
+import type { NextComponentType } from 'next';
 import '../styles/globals.css';
 import AuthGuard from '@/components/AuthGuard';
+
+type CustomAppProps = AppProps<{ session: Session | null }> & {
+	Component: NextComponentType & { auth?: boolean };
+};
 
 const MyApp: AppType<{ session: Session | null }> = ({
 	Component,
 	pageProps: { session, ...pageProps }
-}) => {
+}: CustomAppProps) => {
 	return (
 		<SessionProvider session={session}>
 			{/* todo: Fix this error */}

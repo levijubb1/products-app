@@ -11,6 +11,7 @@ const restricted = async (req: NextApiRequest, res: NextApiResponse) => {
       content:
         "This is protected content. You can access this content because you are signed in.",
     });
+
   } else {
     res.send({
       error:
