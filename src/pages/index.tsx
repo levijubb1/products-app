@@ -10,7 +10,6 @@ const Home: NextPage = () => {
 	const { data: session, status } = useSession();
 
 	if (session) {
-		console.log('pushing to products')
 		router.push('/products');
 	}
 
@@ -38,7 +37,7 @@ const Home: NextPage = () => {
 				{/* If no session is detected show login option */}
 				{session === null && (
 					<Link href="auth/sign-in">
-						<button className="btn absolute z-10 btn-circle h-[250px] w-[250px]">
+						<button className="btn absolute z-10 btn-circle h-[250px] w-[250px] font-mono">
 							Sign in
 						</button>
 					</Link>

@@ -1,9 +1,12 @@
 import Image from 'next/image';
 
 import { Product } from '@prisma/client';
+import { useState } from 'react';
+import { cn } from '@/utils/classes';
 
-const ActionButton: React.FC<{ data: Product }> = (props) => {
-	const { name, price, createdAt } = props.data;
+const ActionButton = ({ data }: { data: Product }) => {
+	const { name, price, createdAt } = data;
+	const [isLoading, setIsLoading] = useState(true);
 
 	const isNew = createdAt > new Date(Date.now() - 1000 * 60 * 60 * 12);
 	return (
@@ -13,7 +16,13 @@ const ActionButton: React.FC<{ data: Product }> = (props) => {
 					src={`https://source.unsplash.com/random/300x200`}
 					alt="An image"
 					layout="fill"
-					className="h-full w-full object-cover object-center"
+					className={cn(
+						'h-full w-full object-cover object-center duration-700 ease-in-out group-hover:opacity-75',
+						isLoading
+							? 'scale-110 blur-2xl grayscale'
+							: 'scale-100 blur-0 grayscale-0'
+					)}
+					onLoadingComplete={() => setIsLoading(false)}
 				/>
 			</div>
 			<section className="mt-4 flex justify-between">
