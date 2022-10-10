@@ -10,6 +10,7 @@ const Home: NextPage = () => {
 	const { data: session, status } = useSession();
 
 	if (session) {
+		console.log('pushing to products')
 		router.push('/products');
 	}
 

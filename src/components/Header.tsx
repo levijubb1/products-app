@@ -46,7 +46,7 @@ const Header: React.FC = () => {
 			<div className="navbar-center">
 				<a className="btn btn-ghost normal-case text-xl">Products Page</a>
 			</div>
-			<div className="navbar-end">
+			<div className="navbar-end flex gap-3">
 				{/* <button className="btn btn-ghost btn-circle">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
 					</svg>
 				</button> */}
 				<ThemeSwap />
-				<button className="btn btn-ghost btn-circle">
+				{/* <button className="btn btn-ghost btn-circle">
 					<div className="indicator">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -82,31 +82,29 @@ const Header: React.FC = () => {
 						</svg>
 						<span className="badge badge-xs badge-secondary indicator-item"></span>
 					</div>
-				</button>
+				</button> */}
 				<div className="dropdown dropdown-end">
-					<button className="btn btn-ghost btn-circle avatar">
+					<button tabIndex={3} className="btn btn-ghost btn-circle avatar">
 						<div className="w-10 mask mask-hexagon">
 							{session?.user?.image && (
 								<Image src={session?.user?.image} alt="Avatar" layout="fill" />
 							)}
 						</div>
 					</button>
-					<ul className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box">
+					<ul
+						tabIndex={3}
+						className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box"
+					>
 						<li>
 							<a>
 								Settings <FaCog />
 							</a>
 						</li>
-						<li>
+						<li onClick={() => signOut({ callbackUrl: '/' })}>
 							<a>
-							<button
-							className='contents'
-								onClick={() => signOut({ callbackUrl: '/' })}
-							>
-									Log out
-									<FaRunning />
-							</button>
-								</a>
+								Log out
+								<FaRunning />
+							</a>
 						</li>
 					</ul>
 				</div>
