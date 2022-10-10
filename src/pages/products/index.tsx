@@ -55,4 +55,6 @@ const Products = () => {
 	);
 };
 
+Products.auth = true;
+
 export default Products;

@@ -8,6 +8,7 @@ import type { AppType } from 'next/app';
 import type { AppRouter } from '../server/router';
 import type { Session } from 'next-auth';
 import '../styles/globals.css';
+import AuthGuard from '@/components/AuthGuard';
 
 const MyApp: AppType<{ session: Session | null }> = ({
 	Component,
@@ -15,7 +16,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
 	return (
 		<SessionProvider session={session}>
-			<Component {...pageProps} />
+			{/* todo: Fix this error */}
+			{Component.auth ? (
+				<AuthGuard>
+					<Component {...pageProps} />
+				</AuthGuard>
+			) : (
+				<Component {...pageProps} />
+			)}
 		</SessionProvider>
 	);
 };

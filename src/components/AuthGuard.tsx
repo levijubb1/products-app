@@ -18,7 +18,7 @@ const AuthGuard = ({ children }: Props) => {
 	}, [isUser, status]);
 
 	if (isUser) {
-		return children;
+		return <>{children}</>;
 	}
 
 	// Session is being fetched, or no user.

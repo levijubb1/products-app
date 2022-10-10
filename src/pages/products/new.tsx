@@ -63,4 +63,6 @@ function NewProduct() {
 	);
 }
 
+NewProduct.auth = true;
+
 export default NewProduct;
