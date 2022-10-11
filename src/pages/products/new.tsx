@@ -1,15 +1,11 @@
 import DefaultLayout from '@/components/DefaultLayout';
-import Input from '@/components/Input';
+import ProductForm from '@/components/Products/ProductForm';
 import { trpc } from '@/utils/trpc';
+import { Product } from '@/utils/types';
 import Router from 'next/router';
 import { useState } from 'react';
 
 function NewProduct() {
-	interface Product {
-		name: '';
-		price: 0;
-	}
-
 	const setter = trpc.useMutation('product.create');
 	const [newProduct, setNewProduct] = useState<Product>({ name: '', price: 0 });
 
@@ -28,37 +24,21 @@ function NewProduct() {
 
 	return (
 		<DefaultLayout pageDescription="New product" pageName="New product">
-			<form onSubmit={handleSubmit}>
-				<section className="mx-auto grid max-w-xl gap-4 grid-cols-2">
-					<Input
-						name="name"
-						label="Product name"
-						placeholder="an awesome product!"
-						type="text"
-						styles="col-span-2 sm:col-span-1"
-						value={newProduct.name}
-						onChange={handleChange}
-					/>
-					<Input
-						name="price"
-						label="Product price"
-						placeholder="69"
-						type="number"
-						styles="col-span-2 sm:col-span-1"
-						value={newProduct.price}
-						onChange={handleChange}
-					/>
-					<button
-						className={`btn btn-primary col-span-2 ${
-							setter.isLoading ? 'loading' : ''
-						}`}
-						disabled={!newProduct.name || !newProduct.price}
-						type="submit"
-					>
-						Save
-					</button>
-				</section>
-			</form>
+			<ProductForm
+				product={newProduct}
+				handleChange={handleChange}
+				onSubmit={handleSubmit}
+			>
+				<button
+					className={`btn btn-primary col-span-2 ${
+						setter.isLoading ? 'loading' : ''
+					}`}
+					disabled={!newProduct.name || !newProduct.price}
+					type="submit"
+				>
+					Save
+				</button>
+			</ProductForm>
 		</DefaultLayout>
 	);
 }

@@ -11,22 +11,22 @@ import ProductCard from '@/components/ProductCard';
 
 const Products = () => {
 	const router = useRouter();
-	const postQuery = trpc.useQuery(['product.getAll']);
+	const getQuery = trpc.useQuery(['product.getAll']);
 
 	const handleNewProduct = () => {
 		router.push('/products/new');
 	};
 
-	if (postQuery.error) {
+	if (getQuery.error) {
 		return (
 			<NextError
-				title={postQuery.error.message}
-				statusCode={postQuery.error.data?.httpStatus ?? 500}
+				title={getQuery.error.message}
+				statusCode={getQuery.error.data?.httpStatus ?? 500}
 			/>
 		);
 	}
 
-	if (postQuery.status !== 'success') {
+	if (getQuery.status !== 'success') {
 		return (
 			<div className="flex justify-center items-center h-[100vh]">
 				<Loading />
@@ -34,7 +34,7 @@ const Products = () => {
 		);
 	}
 
-	const { data: products } = postQuery;
+	const { data: products } = getQuery;
 
 	return (
 		<DefaultLayout pageName="Products" pageDescription="Products page">
