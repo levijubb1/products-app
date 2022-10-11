@@ -1,9 +1,7 @@
 import Image from 'next/image';
-
 import { Product } from '@prisma/client';
 import { useState } from 'react';
 import { cn } from '@/utils/classes';
-import Link from 'next/link';
 
 const ProductCard = ({ data }: { data: Product }) => {
 	const { id, name, price, createdAt } = data;
