@@ -1,5 +1,4 @@
 import NextError from 'next/error';
-
 import { trpc } from '../../utils/trpc';
 
 // components

@@ -9,7 +9,10 @@ const DEFAULT_PRODUCT = {
 export const productRouter = createRouter()
 	.query('getAll', {
 		async resolve({ ctx }) {
-			return await ctx.prisma.product.findMany();
+			// Sorting in ascending order by created date.
+			return await (
+				await ctx.prisma.product.findMany()
+			).sort((a, b) => a.createdAt.valueOf() - b.createdAt.valueOf());
 		}
 	})
 	.query('get', {

@@ -19,6 +19,8 @@ module.exports = {
 		// 	},
 		// 	'light'
 		// ]
+
+		// themes: ['corporate']
 	},
 	plugins: [require('daisyui'), require('@tailwindcss/aspect-ratio')]
 	// plugins: [],

@@ -2,10 +2,11 @@ import DefaultLayout from '@/components/DefaultLayout';
 import ProductForm from '@/components/Products/ProductForm';
 import { trpc } from '@/utils/trpc';
 import { Product } from '@/utils/types';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 function NewProduct() {
+	const router = useRouter();
 	const setter = trpc.useMutation('product.create');
 	const [newProduct, setNewProduct] = useState<Product>({ name: '', price: 0 });
 
@@ -19,7 +20,7 @@ function NewProduct() {
 		newProduct.name &&
 			newProduct.price &&
 			setter.mutate({ ...newProduct, price: Number(newProduct.price) });
-		Router.back();
+		router.back();
 	};
 
 	return (
