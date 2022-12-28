@@ -3,6 +3,7 @@ import Image from 'next/image';
 import ThemeSwap from './ThemeSwap';
 import { FaRunning, FaCog } from 'react-icons/fa';
 import { signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 const Header: React.FC = () => {
 	const { data: session } = useSession();
@@ -44,7 +45,9 @@ const Header: React.FC = () => {
 				</div>
 			</div>
 			<div className="navbar-center">
-				<a className="btn btn-ghost normal-case text-xl">Products Page</a>
+				<Link href="/products">
+					<a className="btn btn-ghost normal-case text-xl">Products</a>
+				</Link>
 			</div>
 			<div className="navbar-end flex gap-3">
 				{/* <button className="btn btn-ghost btn-circle">
